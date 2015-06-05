@@ -1,0 +1,10 @@
+<h1><%= "#{@contact.full_name}" %></h1>
+<h4>Information last updated on: <%= @contact.friendly_updated_at %>
+<h3>Email: <%= "#{@contact.email}" %></h3>
+<h3>Phone Number: <%= "#{@contact.from_japan}" %></h3>
+<p> <%= @contact.reverse_geocode_by %></p>
+<p> Bio: <%= "#{@contact.biography}" %> </p>
+
+
+<%= link_to "Update Contact Info", "/contacts/#{@contact.id}/edit"%><br>
+<%= link_to "Delete Contact", "/contacts/#{@contact.id}", method: :delete %>

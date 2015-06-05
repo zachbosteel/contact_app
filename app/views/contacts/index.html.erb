@@ -1,0 +1,12 @@
+<h1>My Contacts</h1>
+
+<h3><%= link_to "Add New Contact", "/contacts/new" %></h3>
+
+<% @h.each do |contact| %>
+<h2><a href=<%= "/contacts/#{contact.id}" %>>
+<%= "#{contact.full_name}" %>
+</a></h2>
+<h4>EMAIL: <%= "#{contact.email}" %></h4>
+<h4>PHONE NUMBER: <%= "#{contact.from_japan}"%></h4><br>
+<% end %>
+
