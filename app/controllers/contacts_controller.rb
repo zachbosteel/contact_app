@@ -1,10 +1,15 @@
 class ContactsController < ApplicationController
   def index
     @h = Contact.all
+    if params[:search]
+      @h = Contact.where('first_name LIKE ? OR last_name LIKE ? OR email LIKE ? or phone_number LIKE ?', "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%", "%#{params[:search]}%")
+    end
   end
   def show
     @id = params[:id]
     @contact = Contact.find_by(id: @id)
+    latlon = [@contact.latitude, @contact.longitude]
+    @address = Geocoder.address(latlon)
   end
   def new
   end
