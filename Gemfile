@@ -45,3 +45,4 @@ end
 
 gem 'bootstrap-sass', '~> 3.3.3'
 gem 'geocoder', '~> 1.2.8'
+gem 'devise', '~> 3.4.1'

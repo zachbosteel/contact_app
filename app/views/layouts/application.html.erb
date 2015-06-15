@@ -7,6 +7,41 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<nav>
+  <h1 class= "navbar">My Contacts</h1>
+  <ul class= "navbar">
+    <li><%= link_to "Home", "/" %></li>
+    <li><%= link_to "Add New Contact", "/contacts/new" if current_user %></li>
+    <li><%= link_to "Sign Up", "/users/sign_up" if not current_user%></li>
+    <li><%= link_to "Sign In", "/users/sign_in" if not current_user %></li>
+    <li><%= link_to "Sign Out", "/users/sign_out", method: :delete if current_user %></li>
+    <%= form_tag "/contacts", method: :get, class: "navbar" do %>
+      <%= text_field_tag :search %>
+      <%= submit_tag "Search for Contact" %>
+    <%end%>
+  </ul>
+  <div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+      Sort Contacts by Group
+      <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+      <% Group.all.each do |group| %>
+        <%= link_to group.name, "/contacts?group=#{group.id}" %>
+      <% end %>
+    </ul>
+  </div>
+</nav>
+<% flash.each do |name, message| %>
+  <div class = "container">
+    <div class = "col-md-4 col-md-offset-4">
+      <div class="alert alert-<%= name %> alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <p class="flash"><%= message %></p>
+   </div>
+  </div>
+</div>
+<% end %>
 
 <%= yield %>
 

@@ -1,19 +1,15 @@
-<nav>
-  <%= form_tag "/contacts", method: :get do %>
-    <%= text_field_tag :search %>
-    <%= submit_tag "Search for Contact" %>
-  <%end%>
-</nav>
 
-<h1>My Contacts</h1>
-
-<h3><%= link_to "Add New Contact", "/contacts/new" %></h3>
-
+<div class = "container">
+<div class = "col-md-4 col-md-offset-4">
 <% @h.each do |contact| %>
-<h2><a href=<%= "/contacts/#{contact.id}" %>>
-<%= "#{contact.full_name}" %>
-</a></h2>
-<h4>EMAIL: <%= "#{contact.email}" %></h4>
-<h4>PHONE NUMBER: <%= "#{contact.from_japan}"%></h4><br>
+  <% if contact.user == current_user %>
+    <h2><a href=<%= "/contacts/#{contact.id}" %>>
+    <%= "#{contact.full_name}" %>
+    </a></h2>
+    <h4>EMAIL: <%= "#{contact.email}" %></h4>
+    <h4>PHONE NUMBER: <%= "#{contact.from_japan}"%></h4><br>
+  <% end %>
 <% end %>
+</div>
+</div>
 

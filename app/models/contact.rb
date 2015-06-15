@@ -1,7 +1,7 @@
 class Contact < ActiveRecord::Base
-  reverse_geocoded_by :latitude, :longitude,
-  :address => :location
-  after_validation :reverse_geocode
+  belongs_to :user
+  has_many :grouped_contacts
+  has_many :groups, through: :grouped_contacts
   def full_name
     full_name = " "
     if first_name != nil

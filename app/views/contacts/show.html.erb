@@ -4,6 +4,12 @@
 <h3>Phone Number: <%= "#{@contact.from_japan}" %></h3>
 <p> <%= "#{@address}" %></p>
 <p> Bio: <%= "#{@contact.biography}" %> </p>
+<h4>Contact Groups</h4>
+<ul>
+<% @contact.groups.each do |group| %>
+  <li><%= group.name %></li>
+<% end %>
+</ul>
 
 
 <%= link_to "Update Contact Info", "/contacts/#{@contact.id}/edit"%><br>
